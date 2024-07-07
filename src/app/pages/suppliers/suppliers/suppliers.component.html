@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>Manage Suppliers</h2>
+    <button class="btn btn-success mb-3" (click)="addSupplier()">Add New Supplier</button>
+    <div class="row">
+      <div *ngFor="let supplier of suppliers" class="col-md-4">
+        <div class="card mb-4">
+          <img [src]="supplier.supplierImage" class="card-img-top" alt="{{ supplier.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ supplier.name }}</h5>
+            <button class="btn btn-primary" (click)="editSupplier(supplier)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteSupplier(supplier.supplierId)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

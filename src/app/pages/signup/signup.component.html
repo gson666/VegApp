@@ -1,0 +1,80 @@
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">Sign Up</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="resigterForm" (ngSubmit)="register()">
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-user p-2"></span>
+                                    <input formControlName="firstName" type="text" placeholder="First Name">
+                                </div>
+                                <small *ngIf="resigterForm.controls['firstName'].dirty && resigterForm.controls['firstName'].hasError('required')" class="text-danger">*First Name is required</small>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-user p-2"></span>
+                                    <input formControlName="lastName" type="text" placeholder="Last Name">
+                                </div>
+                                <small *ngIf="resigterForm.controls['lastName'].dirty && resigterForm.controls['lastName'].hasError('required')" class="text-danger">*Last Name is required</small>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-solid fa-envelope p-2"></span>
+                                    <input formControlName="email" type="email" placeholder="Email">
+                                </div>
+                                <small *ngIf="resigterForm.controls['email'].dirty && resigterForm.controls['email'].hasError('required')" class="text-danger">*Email is required</small>
+                                <small *ngIf="resigterForm.controls['email'].dirty && resigterForm.controls['email'].hasError('email')" class="text-danger">*Invalid email format</small>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-user p-2"></span>
+                                    <input formControlName="userName" type="text" placeholder="Username">
+                                </div>
+                                <small *ngIf="resigterForm.controls['userName'].dirty && resigterForm.controls['userName'].hasError('required')" class="text-danger">*Username is required</small>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="password" [type]="type" placeholder="Password" (input)="onPasswordInput()">
+                                    <span (click)="hideShowPass()" class="fa {{eyeIcon}} p-2"></span>
+                                </div>
+                                <small *ngIf="resigterForm.controls['password'].dirty && resigterForm.controls['password'].hasError('required')" class="text-danger">*Password is required</small>
+                                <!-- Password Commentary -->
+                                <div *ngIf="resigterForm.controls['password'].dirty" class="password-guidelines">
+                                    <small [ngClass]="{'text-success': passwordValidations.containsNumber, 'text-danger': !passwordValidations.containsNumber}">
+                                        Must include at least one number.
+                                    </small><br>
+                                    <small [ngClass]="{'text-success': passwordValidations.containsUppercase, 'text-danger': !passwordValidations.containsUppercase}">
+                                        Must include at least one uppercase letter.
+                                    </small><br>
+                                    <small [ngClass]="{'text-success': passwordValidations.containsSpecialChar, 'text-danger': !passwordValidations.containsSpecialChar}">
+                                        Must include at least one special character: (!#?&).
+                                    </small><br>
+                                    <small [ngClass]="{'text-success': passwordValidations.isValidLength, 'text-danger': !passwordValidations.isValidLength}">
+                                        Must be at least 8 characters long.
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="confirmedPassword" [type]="type" placeholder="Confirm Password">
+                                    <span (click)="hideShowPass()" class="fa {{eyeIcon}} p-2"></span>
+                                </div>
+                                <small *ngIf="resigterForm.controls['confirmedPassword'].dirty && resigterForm.controls['confirmedPassword'].hasError('required')" class="text-danger">*Confirm Password is required</small>
+                                <small *ngIf="resigterForm.controls['confirmedPassword'].dirty && resigterForm.controls['confirmedPassword'].value !== resigterForm.controls['password'].value" class="text-danger">*Passwords do not match</small>
+                            </div>
+                            <button [disabled]="resigterForm.invalid" type="submit" class="btn btn-primary btn-block mt-4 w-100">Sign Up</button>
+                            <div class="text-center pt-4 text-muted">Already have an account? <a id="login" routerLink="/login">Login</a></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

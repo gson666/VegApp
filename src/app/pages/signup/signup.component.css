@@ -1,0 +1,12 @@
+.password-guidelines small {
+    display: block;
+    margin-top: 5px;
+  }
+  
+  .text-success {
+    color: green;
+  }
+  
+  .text-danger {
+    color: red;
+  }

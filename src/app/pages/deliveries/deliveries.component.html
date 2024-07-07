@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Manage Deliveries</h2>
+    <div class="list-group">
+      <a *ngFor="let delivery of deliveries" class="list-group-item list-group-item-action">
+        {{ delivery.deliveryDate | date }} - {{ delivery.supplier.name }}
+      </a>
+    </div>
+  </div>
+  

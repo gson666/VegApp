@@ -1,0 +1,17 @@
+<div class="container profile-container">
+    <div class="card profile-card">
+      <div class="card-body">
+        <h2 class="card-title">User Profile</h2>
+        <div *ngIf="user">
+          <p><strong>Username:</strong> {{ user.userName }}</p>
+          <p><strong>Email:</strong> {{ user.email }}</p>
+          <p><strong>First Name:</strong> {{ user.firstName }}</p>
+          <p><strong>Last Name:</strong> {{ user.lastName }}</p>
+        </div>
+        <div *ngIf="!user">
+          <p>Loading profile...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
