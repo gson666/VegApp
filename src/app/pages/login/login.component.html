@@ -23,6 +23,7 @@
                                 </div>
                             </div>
                             <small *ngIf="loginForm.controls['password'].dirty && loginForm.controls['password'].hasError('required')" class="text-danger">*Password is required</small>
+                            <small *ngIf="loginError" class="text-danger">{{loginError}}</small>
                             <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block mt-4 w-100">Login</button>
                             <div class="text-center pt-4 text-muted">Don't have an account? <a id="signup" routerLink="/signup">Sign up</a></div>
                         </form>

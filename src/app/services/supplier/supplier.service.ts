@@ -19,12 +19,12 @@ export class SupplierService {
     return this.http.get<SupplierDTO>(`${this.baseURL}/${id}`);
   }
 
-  addNewSupplier(supplier: SupplierDTO): Observable<SupplierDTO> {
-    return this.http.post<SupplierDTO>(this.baseURL, supplier);
+  addNewSupplier(supplier: SupplierDTO): Observable<any> {
+    return this.http.post<any>(this.baseURL, supplier);
   }
 
-  updateSupplier(id: number, supplier: SupplierDTO): Observable<SupplierDTO> {
-    return this.http.put<SupplierDTO>(`${this.baseURL}/${id}`, supplier);
+  updateSupplier(id: number, supplier: SupplierDTO): Observable<any> {
+    return this.http.put<any>(`${this.baseURL}/${id}`, supplier);
   }
 
   deleteSupplier(id: number): Observable<void> {

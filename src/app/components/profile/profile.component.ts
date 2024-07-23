@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import User from 'src/app/models/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ import User from 'src/app/models/User';
 export class ProfileComponent implements OnInit {
   user!: User;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private router:Router) {}
 
   ngOnInit(): void {
     const userName = this.authService.getCurrentUser();
@@ -22,5 +23,8 @@ export class ProfileComponent implements OnInit {
         console.error('Error fetching user profile', error);
       }
     );
+  }
+  goBack(){
+    this.router.navigate(['/home']);
   }
 }

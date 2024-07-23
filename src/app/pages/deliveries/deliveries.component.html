@@ -1,9 +1,38 @@
-<div class="container">
-    <h2>Manage Deliveries</h2>
-    <div class="list-group">
-      <a *ngFor="let delivery of deliveries" class="list-group-item list-group-item-action">
-        {{ delivery.deliveryDate | date }} - {{ delivery.supplier.name }}
-      </a>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Deliveries</h2>
+    <button class="btn btn-primary" [routerLink]="['/add-delivery']">Add Delivery</button>
+  </div>
+
+  <div class="mb-3">
+    <button class="btn btn-secondary" (click)="toggleSortOrder()">
+      Sort by Date ({{ sortAscending ? 'Ascending' : 'Descending' }})
+    </button>
+  </div>
+
+  <ul class="list-group">
+    <li *ngFor="let delivery of deliveries" class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <strong>Date:</strong> {{ delivery.deliveryDate | date: 'yyyy-MM-dd' }} <br>
+        <strong>Supplier:</strong> 
+        <a href="javascript:void(0)" (click)="showSupplierDetails(delivery.supplierId)">
+          {{ getSupplierName(delivery.supplierId) }}
+        </a>
+        <strong>Total Cost:</strong> {{getTotalCost(delivery) | currency}}
+      </div>
+      <div>
+        <button class="btn btn-warning btn-sm" [routerLink]="['/edit-delivery', delivery.deliveryId]">Edit</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteDelivery(delivery.deliveryId)">Delete</button>
+      </div>
+    </li>
+  </ul>
+
+  <div *ngIf="selectedSupplier" class="card mt-4">
+    <div class="card-body">
+      <h5 class="card-title">{{ selectedSupplier.name }}</h5>
+      <p class="card-text"><strong>ID:</strong> {{ selectedSupplier.supplierId }}</p>
+      <p class="card-text"><strong>Image:</strong> <img [src]="selectedSupplier.supplierImage" alt="{{ selectedSupplier.name }}" class="img-fluid"></p>
+      <button class="btn btn-secondary" (click)="hideSupplierDetails()">Close</button>
     </div>
   </div>
-  
+</div>

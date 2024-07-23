@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  loginError:string | null = null;
   loginForm: FormGroup;
   type:string = "password";
   isText:boolean =false;
@@ -30,12 +31,17 @@ export class LoginComponent {
   }
   onSumbit(){
     if(this.loginForm.valid){
-      this.authService.login(this.loginForm.value)
-      .subscribe((data:any)=>{
-        if(this.authService.isLoggedin()){
-          this.router.navigate(['/home']);
+      this.authService.login(this.loginForm.value).subscribe({
+        next:(data:any) => {
+          if(this.authService.isLoggedin()){
+            this.router.navigate(['/home']);
+          }
+        },
+        error:(err:any) => {
+          this.loginError = 'Invalid username or password';
         }
       });
+      
     }
   }
 }

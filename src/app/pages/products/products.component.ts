@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   categories: CategoryDTO[] = [];
   selectedCategory: number | null = null;
 
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
@@ -57,6 +58,7 @@ export class ProductsComponent implements OnInit {
     const category = this.categories.find(c => c.categoryId === categoryId);
     return category ? category.name : 'Unknown';
   }
+  
 
   editProduct(product: ProductDTO): void {
     this.router.navigate(['/edit-product', product.productId]);
@@ -67,11 +69,11 @@ export class ProductsComponent implements OnInit {
       this.loadProducts();
     });
   }
-
+  
   addProduct(): void {
     this.router.navigate(['/add-product']);
   }
   goBack() {
-    this.location.back();
+    this.router.navigate(['/home']);
     }
 }

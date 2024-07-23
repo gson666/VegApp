@@ -17,8 +17,8 @@ export class DeliveryService {
   getDeliveryById(id:number): Observable<DeliveryDTO>{
     return this.http.get<DeliveryDTO>(`${this.baseURL}/${id}`);
   }
-  createDelivery(delivery:DeliveryDTO): Observable<DeliveryDTO>{
-    return this.http.post<DeliveryDTO>(this.baseURL,delivery);
+  createDelivery(delivery:DeliveryDTO): Observable<any>{
+    return this.http.post<any>(this.baseURL,delivery);
   }
   updateDelivery(id:number,delivery:DeliveryDTO): Observable<DeliveryDTO>{
     return this.http.put<DeliveryDTO>(`${this.baseURL}/${id}`,delivery);

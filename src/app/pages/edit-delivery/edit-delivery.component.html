@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>Edit Delivery</h2>
+  <button class="btn btn-secondary btn-sm-custom" (click)="goBack()">Go Back</button>
+  <form [formGroup]="editDeliveryForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="supplierId">Supplier</label>
+      <select formControlName="supplierId" class="form-control" id="supplierId">
+        <option *ngFor="let supplier of suppliers" [value]="supplier.supplierId">{{ supplier.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="deliveryDate">Delivery Date</label>
+      <input formControlName="deliveryDate" class="form-control" id="deliveryDate" type="date">
+    </div>
+    <div formArrayName="deliveryItems">
+      <div *ngFor="let item of deliveryItems.controls; let i = index" [formGroupName]="i">
+        <div class="form-group">
+          <label for="productId-{{i}}">Product</label>
+          <select formControlName="productId" class="form-control" id="productId-{{i}}">
+            <option *ngFor="let product of products" [value]="product.productId">{{ product.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quantity-{{i}}">Quantity</label>
+          <input formControlName="quantity" class="form-control" id="quantity-{{i}}" type="number">
+        </div>
+        <div class="form-group">
+          <label for="price-{{i}}">Price</label>
+          <input formControlName="price" class="form-control" id="price-{{i}}" type="number">
+        </div>
+        <button type="button" class="btn btn-danger" (click)="removeDeliveryItem(i)">Remove Item</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-success mt-3" (click)="addDeliveryItem()">Add Delivery Item</button>
+    <button type="submit" class="btn btn-primary mt-3">Update Delivery</button>
+  </form>
+</div>

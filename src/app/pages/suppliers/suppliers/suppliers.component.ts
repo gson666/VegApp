@@ -38,4 +38,7 @@ export class SuppliersComponent implements OnInit {
   addSupplier(): void {
     this.router.navigate(['/add-supplier']);
   }
+  goBack() {
+    this.router.navigate(['/home']);
+    }
 }

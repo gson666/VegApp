@@ -1,0 +1,38 @@
+.container {
+    margin-top: 20px;
+  }
+  
+  .d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    width: 100%;
+  }
+  
+  .img-container {
+    width: 100%;
+    height: 200px; /* Adjust the height as needed */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .img-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .btn-secondary {
+    white-space: nowrap;
+  }
+  
+  .btn-sm-custom {
+    margin-left: 10px;
+  }
+  

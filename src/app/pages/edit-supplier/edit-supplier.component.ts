@@ -15,6 +15,7 @@ export class EditSupplierComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private supplierService: SupplierService, private route: ActivatedRoute, private router: Router) {
     this.editSupplierForm = this.fb.group({
+      supplierId: [''],
       name: ['', Validators.required],
       supplierImage: ['']
     });

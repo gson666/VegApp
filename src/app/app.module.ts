@@ -17,6 +17,8 @@ import { EditProductComponent } from './pages/edit-product/edit-product.componen
 import { AddSupplierComponent } from './pages/add-supplier/add-supplier.component';
 import { EditSupplierComponent } from './pages/edit-supplier/edit-supplier.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AddDeliveryComponent } from './pages/add-delivery/add-delivery.component';
+import { EditDeliveryComponent } from './pages/edit-delivery/edit-delivery.component';
 
 
 
@@ -34,6 +36,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     EditSupplierComponent,
     ProfileComponent,
     SuppliersComponent,
+    AddDeliveryComponent,
+    EditDeliveryComponent,
     
     
   ],

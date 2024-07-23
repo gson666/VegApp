@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <h2>Add Delivery</h2>
+  <form [formGroup]="addDeliveryForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="supplierId">Supplier</label>
+      <select formControlName="supplierId" class="form-control" id="supplierId">
+        <option *ngFor="let supplier of suppliers" [value]="supplier.supplierId">{{ supplier.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="deliveryDate">Delivery Date</label>
+      <input formControlName="deliveryDate" class="form-control" id="deliveryDate" type="date">
+    </div>
+
+    <h3>Products</h3>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let product of products">
+        <div class="card mb-4">
+          <img [src]="product.image" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text"><strong>Price:</strong> {{ product.price | currency }}</p>
+            <button class="btn btn-primary" (click)="addProductToDelivery(product)">Add to Delivery</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Delivery Items</h3>
+    <div formArrayName="deliveryItems">
+      <div *ngFor="let item of deliveryItems.controls; let i = index" [formGroupName]="i" class="mb-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <strong>Product:</strong> {{ getProductById(item.value.productId).name }}
+          </div>
+          <div>
+            <button type="button" class="btn btn-secondary btn-sm" (click)="decreaseQuantity(i)">-</button>
+            <input formControlName="quantity" class="form-control d-inline-block w-auto mx-2" type="number" readonly>
+            <button type="button" class="btn btn-secondary btn-sm" (click)="increaseQuantity(i)">+</button>
+          </div>
+          <div>
+            <strong>Total:</strong> {{ getTotalPrice(i) | currency }}
+          </div>
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeDeliveryItem(i)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Add Delivery</button>
+  </form>
+</div>
